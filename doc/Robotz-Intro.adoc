@@ -60,15 +60,15 @@ shaping and more.
 
 Okay, let's get started. Head over to `https://rh-test.3scale.net/` and:
 
-* Login with your team credentials (roboteam1-8, password as provided)
-* After login you will see the API key you need to access the robot API
+* Login with your team credentials (roboteam1-8, password as provided).
+* After login you will see the API key ("USER_KEY") you need to access the robot API.
 
 TIP: Look around in the 3Scale web UI, you will see examples of how to invoke 
 the API of your robot. 3Scale will take care of routing your requests to the 
 proper robot. 
 
 WARNING: The most important information is the *Key* from the *Credentials* 
-box. Using this key as *user_key* in your API calls takes care of routing the 
+box. Using this key as *USER_KEY* in your API calls takes care of routing the 
 requests to the proper robot. 
 
 ==== Testing the API
@@ -78,9 +78,11 @@ curl commandline under *Run your requests* from a terminal. This will test the
 connection to the Hub-Controller, *not* the robot!
 
 ----
-curl https://<URI>:443/api/robot/status?user_key=<YOUR KEY>
+curl https://<URI>:443/api/robot/status?user_key=<*USER_KEY*>
 OK 
 ----
+
+Scroll down to "Run your requests" and simply copy the line below which has already all details and copy it in you terminal. (Take care to copy not the "$" as this won't bring any results.)
 
 ==== Exploring the Robot API
 
@@ -94,7 +96,7 @@ Here you will find the API documentation of all robot operation currently
 exposed in OpenAPI/Swagger format.
 
 You can test the available API calls from here, this will actually go to your 
-robot. Just remember to fill in the *USER_KEY* parameter when you test.  
+robot. Klick on the Get-Button and fill in the *USER_KEY* parameter when you test.  
 
 === Accessing OpenShift
 
@@ -112,24 +114,23 @@ https://master.berlin-4dcf.openshiftworkshop.com/console
 * Login as your team user, e.g. *user1*, the password will be provided. 
 * Look around
 
-If you prefer the commandline *oc* tool (has to be installed on your PC), login to the OpenShift cluster is made easy by using the web UI. In the web UI click on the *?* button in the upper right and copy the 
-*oc* command line. Example:
+You can access OpenShift's functionalities via the web UI or a command line client, of course. We recommend the web UI as this will be most convenient.
+
+If you prefer the commandline *oc* tool (has to be installed on your PC), login to the OpenShift cluster is made easy by using the web UI. In the web UI click on the *?* button in the upper right and copy at *Command Line Tools* the *oc* command line. (You'll find here a link to the oc tool download as well.) 
+
+Example:
 
 ----
-NN
+oc login https://master.berlin-4dcf.openshiftworkshop.com:443 --token=<*USER_KEY*>
 ----
 
 Paste this into the terminal and you are good to go!
-
-
-TIP: You can access OpenShift's functionalities via the web UI or a 
-command line client, of course.
 
 === Your first application
 
 So we are ready to start some coding. Normally you would now have to setup your 
 dev environment... install IDE, language runtimes, build tool, version control 
-system/access, checkout code.... etc. And most of this specific to your OS.
+system/access, checkout code... etc. And most of this specific to your OS.
 
 Because we work in a cutting edge environment we'll use CodeReady
 a browser-based, cloud-native IDE running in the OpenShift environment.
@@ -150,7 +151,7 @@ use Java in this example for our applications.
 After login you are in the Workspace management view of CodeReady. Start your 
 workspace in CodeReady:
 
-* *NAME*: team1-robot-app-workspace 
+* *NAME*: team1-robot-app-workspace
 * *SELECT STACK*: Java
 * Click *CREATE*
 * After creation has finished a pop-up appears, click *OPEN*.
@@ -161,7 +162,7 @@ TIP: Creating a new workspace can take some time.
 
 ==== Get Application Quickstart
 
-Robot Services Ltd has provided a basic Spring Boot-based Java application to 
+Robot Services Ltd. has provided a basic Spring Boot-based Java application to 
 quickly get you started with your first robot application. It's provided in a 
 Git (Gogs) repository hosted on the OpenShift cluster. 
 
@@ -294,11 +295,7 @@ Try running the *run()* method again, it should do the same as before. To see
 the log message, click the blue circle with the pod name and click on the 
 *Logs* tab.
 
-== Now the Fun Starts! 
-
-Now you should have all the information to start hacking the robot!
-
-=== Challenge
+=== Start your first Challenge!
 
 Task: Make your robot drive in a square with approx 20cm edge length
 
@@ -311,12 +308,12 @@ examples)
 * Test locally in Che if you want to
 * Deploy to OpenShift
 
-WARNING: Solution Below!
+WARNING: Solution Below! Stop reading now and just try it out!
 
 ----
  MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
 String>();
-        paramMap.add("user_key", "<API Key");
+        paramMap.add("user_key", "<*USER_Key*");
         HttpEntity<MultiValueMap<String, String>> request = new 
 HttpEntity<MultiValueMap<String, String>>(paramMap,
                 new LinkedMultiValueMap<String, String>());
