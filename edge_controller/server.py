@@ -74,14 +74,14 @@ def left(degrees):
         degrees *= -1
 
     easygpg.turn_degrees(degrees)
-    stop_executing("left : " + degrees)
+    stop_executing("left : " + str(degrees))
     return "OK"
 
 @app.route('/right/<int:degrees>', methods=['POST'])
 def right(degrees):
-    start_executing ("right : " + degrees)
+    start_executing ("right : " + str(degrees))
     easygpg.turn_degrees(degrees)
-    stop_executing("right : " + degrees)
+    stop_executing("right : " + str(degrees))
     return "OK"
 
 @app.route('/servo/<int:degrees>', methods=['POST'])
