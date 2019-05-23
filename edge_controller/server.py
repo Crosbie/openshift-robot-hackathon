@@ -23,7 +23,7 @@ easygpg.set_speed(300)
 
 easygpg.close_eyes()
 # Signal running edge controller with left led
-easygpg.open_left_eye()
+# easygpg.open_left_eye()
 
 print("Edge controller has started")
 
