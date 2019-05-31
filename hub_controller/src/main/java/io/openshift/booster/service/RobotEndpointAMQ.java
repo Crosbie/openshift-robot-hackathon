@@ -18,7 +18,11 @@ package io.openshift.booster.service;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.jms.JMSException;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -29,59 +33,37 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
+import org.springframework.jms.support.converter.SimpleMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 
-import io.prometheus.client.Gauge;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponses;
 
-@Path("/robot")
-@Api(value = "Robot Api")
+@EnableJms
+@Path("/robot-async")
+@Api(value = "Robot Api Async")
 @Component
-public class RobotEndpoint {
+public class RobotEndpointAMQ {
 
     // private static final Logger log = LoggerFactory.getLogger(Application.class);
 
-    private static final Gauge powerMetric = Gauge.build().name("Robot_Power").labelNames("power")
-            .help("Current voltage of robot").register();
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
-    private static final Gauge distanceMetric = Gauge.build().name("Robot_Distance").labelNames("distance")
-            .help("Current distance to next object").register();
+    private final SimpleMessageConverter converter = new SimpleMessageConverter();
 
-    // @Value("${edge.controller.uri}")
-    //private String edgeControllerEndpoint;
+    private RobotEndpointAMQ() {
 
-    //@Value("#{${robots}}")
-    //private Map<String, String> robotIpMapping;
-    private RestTemplate restTemplate = new RestTemplate();
-
-    private RobotEndpoint() {
-       /* powerMetric.setChild(new Gauge.Child() {
-            public double get() {
-
-                String response = restTemplate.getForObject(edgeControllerEndpoint + "/power", String.class);
-                return Double.valueOf(response);
-            }
-        }, "power");
-
-        distanceMetric.setChild(new Gauge.Child() {
-            public double get() {
-
-                String response = restTemplate.getForObject(edgeControllerEndpoint + "/distance", String.class);
-                return Double.valueOf(response);
-            }
-        }, "distance");
-
-        */
     }
 
     @GET
@@ -105,12 +87,13 @@ public class RobotEndpoint {
     public Object remoteStatus(@Context HttpHeaders headers,
             @ApiParam(value = "User Key", required = true) @QueryParam("user_key") String userKey) {
 
-        System.out.println(userKey + ": Remote Status called");
+        System.out.println(userKey + ": Async remote Status called");
 
-        String response = restTemplate.getForObject(getRobotURLFromConfigMap(userKey), String.class);
-        return response;
+        return sendAMQMessage("status", "",userKey);
+
     }
 
+   
     @POST
     @Path("/forward/{length_in_cm}")
     @ApiOperation(value = "Drives the robot forward by the indicated cm")
@@ -120,10 +103,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": forward called -> " + lengthInCm);
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/forward/" + lengthInCm,
-                request, String.class);
-        return response;
+        return sendAMQMessage("forward", "" + lengthInCm,userKey);
     }
 
     @POST
@@ -135,10 +115,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": backward called -> " + lengthInCm);
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/backward/" + lengthInCm,
-                request, String.class);
-        return response;
+        return sendAMQMessage("backward", "" + lengthInCm,userKey);
     }
 
     @POST
@@ -150,10 +127,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": left called -> " + degrees);
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/left/" + degrees, request,
-                String.class);
-        return response;
+        return sendAMQMessage("left", "" + degrees,userKey);
     }
 
     @POST
@@ -165,10 +139,8 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": right called -> " + degrees);
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/right/" + degrees, request,
-                String.class);
-        return response;
+        return sendAMQMessage("right", "" + degrees,userKey);
+
     }
 
     @POST
@@ -180,10 +152,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": reset called");
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/reset", request,
-                String.class);
-        return response;
+        return sendAMQMessage("reset", "",userKey);
     }
 
     @POST
@@ -195,10 +164,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": servo called -> " + degrees);
 
-        HttpEntity<String> request = new HttpEntity<>(new String(""));
-        String response = restTemplate.postForObject(getRobotURLFromConfigMap(userKey) + "/servo/" + degrees, request,
-                String.class);
-        return response;
+        return sendAMQMessage("servo", "" + degrees,userKey);
     }
 
     @GET
@@ -210,9 +176,7 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": power called");
 
-        String response = restTemplate.getForObject(getRobotURLFromConfigMap(userKey) + "/power", String.class);
-
-        return response;
+        return sendAMQMessage("power", "",userKey);
     }
 
     @GET
@@ -224,18 +188,8 @@ public class RobotEndpoint {
 
         System.out.println(userKey + ": distance called");
 
-        String response = restTemplate.getForObject(getRobotURLFromConfigMap(userKey) + "/distance", String.class);
-        return response;
+        return sendAMQMessage("distance", "", userKey);
     }
-
-  /*  private String getRobotIpFromProperties(String robotId) {
-        System.out.println("IP Map -> " + robotIpMapping);
-        System.out.println("robotId -> " + robotId);
-        System.out.println("got -> " + robotIpMapping.get(robotId));
-
-        return "http://" + robotIpMapping.get(robotId) + ":5000";
-    }
-    */
 
     private String getRobotURLFromConfigMap(String token) {
 
@@ -259,14 +213,49 @@ public class RobotEndpoint {
             System.out.println("Got IP -> " + robotIp);
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
 
         return "http://" + robotIp + ":5000";
     }
 
-    
+    private Object sendAMQMessage(String operation, String parameter, String userKey) {
+
+        System.out.println("Sending AMQ Message with params -> " + operation + " " + parameter);
+        javax.jms.Message received = null;
+        try {
+            received = jmsTemplate.sendAndReceive(userKey, new MessageCreator() {
+
+                @Override
+                public javax.jms.Message createMessage(Session session) throws JMSException {
+                    System.out.println("Creating Message");
+                    
+                    String msgId = UUID.randomUUID().toString();
+                    System.out.println("msgId -> " + msgId);
+                    TextMessage message;
+                    try {
+                        message = session.createTextMessage(createRobotMsg(operation, parameter));
+                    } catch (JsonProcessingException e) {
+                        
+                        e.printStackTrace();
+                        throw new JMSException("Error Processing JSON", e.toString());
+
+                    }
+                    message.setJMSCorrelationID(msgId);
+                    return message;
+                }
+            });
+
+            System.out.println("Reply received: " + this.converter.fromMessage(received));
+            return this.converter.fromMessage(received);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR";
+        }
+    }
+
 
     private String getRobotURLFromHeaders(HttpHeaders headers) {
 
@@ -284,6 +273,22 @@ public class RobotEndpoint {
         System.out.println("Extracted token -> " + token);
 
         return token;
+    }
+
+    private String createRobotMsg(String operation, String parameter) throws JsonProcessingException {
+
+        System.out.println("Creating JSON Message with -> " + operation + " " + parameter);
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", operation);
+        map.put("paramter", parameter);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
+
+        System.out.println("JSON -> " + jsonResult );
+
+        return jsonResult;
     }
 
     

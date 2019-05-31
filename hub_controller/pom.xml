@@ -45,6 +45,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.amqphub.spring</groupId>
+        <artifactId>amqp-10-jms-spring-boot-starter</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
         <groupId>me.snowdrop</groupId>
         <artifactId>spring-boot-bom</artifactId>
         <version>${spring-boot-bom.version}</version>
@@ -71,6 +76,10 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+        <groupId>org.amqphub.spring</groupId>
+        <artifactId>amqp-10-jms-spring-boot-starter</artifactId>        
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -251,6 +260,7 @@
           <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>fabric8-maven-plugin</artifactId>
+            <version>4.1.0</version>
             <executions>
               <execution>
                 <id>fmp</id>
@@ -259,11 +269,17 @@
                   <goal>build</goal>
                 </goals>
               </execution>
-            </executions>
+            </executions>           
           </plugin>
         </plugins>
       </build>
       <activation />
     </profile>
   </profiles>
+  <repositories>
+    <repository>
+      <id>red-hat-ga</id>
+      <url>https://maven.repository.redhat.com/ga</url>
+    </repository>
+  </repositories>
 </project>
