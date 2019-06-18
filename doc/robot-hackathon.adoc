@@ -25,6 +25,7 @@ shaping and more.
 
 Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
 
+* Click on `*SIGN IN*`
 * Login with your team credentials (`<GUID>`, password as provided)
 * After login you will see the API key you need to access the robot API
 
@@ -34,7 +35,7 @@ proper robot.
 
 WARNING: The most important information is the *Key* from the *Credentials* 
 box. Using this key as *user_key* in your API calls takes care of routing the 
-requests to the proper robot. 
+requests to the proper robot. Your *Key* is: `*<GUID>*`
 
 ==== Testing the API
 
@@ -59,7 +60,7 @@ Here you will find the API documentation of all robot operation currently
 exposed in OpenAPI/Swagger format.
 
 You can test the available API calls from here, this will actually go to your 
-robot. Just remember to fill in `*<GUID>*` when you test.  
+robot. Just remember to fill in `*<GUID>*` as `USER_KEY` when you test.  
 
 === Accessing OpenShift
 
@@ -75,6 +76,8 @@ https://master.berlin-<CHANGEME>.openshiftworkshop.com/console
 
 * Login as your team user, `*<GUID>*`, the password will be provided. 
 * Look around
+* You will see an error: `An error occurred getting metrics.` This is ok, because we don't installed Metrics. Please click on `*Don't Show Me Again*`.
+
 
 If you prefer the commandline *oc* tool (has to be installed on your PC), login to the OpenShift cluster is made easy by using the web UI. In the web UI click on the *?* button in the upper right and copy the 
 *oc* command line. Example:
