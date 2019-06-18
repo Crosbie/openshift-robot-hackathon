@@ -43,7 +43,7 @@ curl commandline under *Run your requests* from a terminal. This will test the
 connection to the Hub-Controller, *not* the robot!
 
 ----
-curl https://<URI>:443/api/robot/status?user_key=<YOUR KEY>
+curl https://api-2445582274375.staging.gw.apicast.io:443/api/robot/status?user_key=<GUID>
 OK 
 ----
 
@@ -59,7 +59,7 @@ Here you will find the API documentation of all robot operation currently
 exposed in OpenAPI/Swagger format.
 
 You can test the available API calls from here, this will actually go to your 
-robot. Just remember to fill in the *USER_KEY* parameter when you test.  
+robot. Just remember to fill in `*<GUID>*` when you test.  
 
 === Accessing OpenShift
 
@@ -67,25 +67,23 @@ Now that you can access and control your robot through the API let's get
 started with programming the robot by developing applications on our container 
 platform. 
 
-Your team user has already been created for you, the users are named 
-user1-8 . Open your browser and access the OpenShift web UI:
+Your team user has already been created for you, your user name is `*<GUID>*`. Open your browser and access the OpenShift web UI:
 
 ----
-https://master.berlin-4dcf.openshiftworkshop.com/console
+https://master.berlin-<CHANGEME>.openshiftworkshop.com/console
 ----
 
-* Login as your team user, e.g. *user1*, the password will be provided. 
+* Login as your team user, `*<GUID>*`, the password will be provided. 
 * Look around
 
 If you prefer the commandline *oc* tool (has to be installed on your PC), login to the OpenShift cluster is made easy by using the web UI. In the web UI click on the *?* button in the upper right and copy the 
 *oc* command line. Example:
 
 ----
-NN
+oc login ...
 ----
 
 Paste this into the terminal and you are good to go!
-
 
 TIP: You can access OpenShift's functionalities via the web UI or a 
 command line client, of course.
@@ -102,7 +100,7 @@ a browser-based, cloud-native IDE running in the OpenShift environment.
 Access CodeReady in your browser:
 
 ----
-http://codeready-workspaces.apps.berlin-4dcf.openshiftworkshop.com
+http://codeready-workspaces.apps.berlin-<CHANGEME>.openshiftworkshop.com
 ----
 
 Click *Register* and self-register your team.
@@ -115,9 +113,9 @@ use Java in this example for our applications.
 After login you are in the Workspace management view of CodeReady. Start your 
 workspace in CodeReady:
 
-* *NAME*: team1-robot-app-workspace 
-* *SELECT STACK*: Java
-* Click *CREATE*
+* *NAME*: `<GUID>-robot-app-workspace` 
+* *SELECT STACK*: `Java` / `Phyton` / `php`
+* Click `*CREATE*`
 * After creation has finished a pop-up appears, click *OPEN*.
 
 Now your CodeReady workspace should open in your browser. 
@@ -135,7 +133,7 @@ To get this application into your workspace:
 * In your Che workspace, click *Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
-** *URL*: 
+** *URL*: <CHANGEME>
 \http://gitea.oapps.ose.sademo.de/<teamname>/roboapp.git
 ** *Name*: Adapt the name to something sensible
 * In the next dialog choose *Java -> Maven*
