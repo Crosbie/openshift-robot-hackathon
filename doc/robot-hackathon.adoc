@@ -2,6 +2,8 @@
 
 == Introduction
 
+Welcome Team <GUID>!
+
 You are a special mission super coder/geek. Your mission is to complete 
 several assignements using a state-of-the-art robot in a dangerous environment. 
 The robot is provided by Robot Services, Ltd. Because speed is of utmost 
@@ -23,7 +25,7 @@ shaping and more.
 
 Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
 
-* Login with your team credentials (roboteam1-8, password as provided)
+* Login with your team credentials (`<GUID>`, password as provided)
 * After login you will see the API key you need to access the robot API
 
 TIP: Look around in the 3Scale web UI, you will see examples of how to invoke 
