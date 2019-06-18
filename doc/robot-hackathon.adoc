@@ -116,7 +116,7 @@ use Java in this example for our applications.
 ==== Launch your workspace from CodeReady
 
 After login you are in the Workspace management view of CodeReady. Add your 
-workspace in CodeReady:
+workspace in CodeReady and choose `Java` or `Python` or `php` as your programming language:
 
 * *NAME*: `<GUID>-robot-app-workspace` 
 * *SELECT STACK*: `Java` / `Python` / `php`
@@ -127,13 +127,22 @@ Now your CodeReady workspace should open in your browser.
 
 TIP: Creating a new workspace can take some time.
 
-==== Get Application Quickstart
+==== Get Application Quickstart, which one depends on your choice before
 
 ===== Python
 
 ===== php
 
-http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com
+
+Robot Services Ltd has provided a basic Spring Boot-based Java application to 
+quickly get you started with your first robot application.
+
+. Login into http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com[Gogs^] with `*<GUID>*` and the provided password.
+. Click on the `*+*` in the upper right and choose `*New Migration*`.
+. In the `*Clone Address*` field write `*https://github.com/Tuxos/robot-hackathon-starter-app-php*`
+. In the `*Repository Name*` field write `*r2d2-php*`
+. Click on `*Migrate Repository*`
+
 
 ===== Java
 
