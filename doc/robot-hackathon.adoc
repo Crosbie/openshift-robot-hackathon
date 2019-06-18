@@ -133,8 +133,7 @@ To get this application into your workspace:
 * In your Che workspace, click *Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
-** *URL*: <CHANGEME>
-\http://gitea.oapps.ose.sademo.de/<teamname>/roboapp.git
+** *URL*: http://gogs-lab-infra.apps.city-guid.openshiftworkshop.com
 ** *Name*: Adapt the name to something sensible
 * In the next dialog choose *Java -> Maven*
 * Click *Save*
@@ -146,7 +145,7 @@ workspace. In the repository you just checked out is a script to download the
 client. In your Che workspace, open a terminal and run:
 
 ----
-# sh /projects/robot-hackathon-<your team user>/get_oc_client.sh
+# sh /projects/robot-hackathon-<GUID>/get_oc_client.sh
 ----
 
 This will download the client. 
@@ -179,7 +178,7 @@ Get the login string from the OpenShift web UI:
 lower workspace pane. Change into your project directory:
 
 ----
-cd /projects/robot-hackathon-<your team user>
+cd /projects/robot-hackathon-<GUID>
 ----
 
 Now build and run the application locally:
@@ -246,7 +245,7 @@ route to externally access the application will be visible in the upper right
 corner. It will look like:
 
 ----
-http://hub-controller-live-<yourteamname>-project.apps-9d00.generic.opentlc.
+http://hub-controller-live-<GUID>-project.apps-<CHANGEME>.generic.opentlc.
 com 
 ----
 
