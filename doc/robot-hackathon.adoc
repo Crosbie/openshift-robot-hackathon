@@ -48,6 +48,8 @@ curl https://api-2445582274375.staging.gw.apicast.io:443/api/robot/status?user_k
 OK 
 ----
 
+If you don't have a notebook with `curl` don't worry, you can test this also through the 3scale webinterface.
+
 ==== Exploring the Robot API
 
 There are a number of ways to test the connectivity from your PC via 3Scale to 
@@ -103,21 +105,21 @@ a browser-based, cloud-native IDE running in the OpenShift environment.
 Access CodeReady in your browser:
 
 ----
-http://codeready-workspaces.apps.berlin-<CHANGEME>.openshiftworkshop.com
+http://che-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com/
 ----
 
-Click *Register* and self-register your team.
+Login with `*<GUID>*` as username and the provided password.
 
 CodeReady provides development environment for several languages and runtimes. We'll 
 use Java in this example for our applications.
 
 ==== Launch your workspace from CodeReady
 
-After login you are in the Workspace management view of CodeReady. Start your 
+After login you are in the Workspace management view of CodeReady. Add your 
 workspace in CodeReady:
 
 * *NAME*: `<GUID>-robot-app-workspace` 
-* *SELECT STACK*: `Java` / `Phyton` / `php`
+* *SELECT STACK*: `Java` / `Python` / `php`
 * Click `*CREATE*`
 * After creation has finished a pop-up appears, click *OPEN*.
 
@@ -126,6 +128,14 @@ Now your CodeReady workspace should open in your browser.
 TIP: Creating a new workspace can take some time.
 
 ==== Get Application Quickstart
+
+===== Python
+
+===== php
+
+http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com
+
+===== Java
 
 Robot Services Ltd has provided a basic Spring Boot-based Java application to 
 quickly get you started with your first robot application. It's provided in a 
@@ -136,7 +146,7 @@ To get this application into your workspace:
 * In your Che workspace, click *Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
-** *URL*: http://gogs-lab-infra.apps.city-guid.openshiftworkshop.com
+** *URL*: http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com
 ** *Name*: Adapt the name to something sensible
 * In the next dialog choose *Java -> Maven*
 * Click *Save*
