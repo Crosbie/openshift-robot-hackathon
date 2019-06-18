@@ -21,7 +21,7 @@ restrict and limit who can use the API. The API management platform takes care
 of role-based access control, setting up accounts, monitoring, routing, traffic 
 shaping and more.
 
-Okay, let's get started. Head over to `https://rh-test.3scale.net/` and:
+Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
 
 * Login with your team credentials (roboteam1-8, password as provided)
 * After login you will see the API key you need to access the robot API
