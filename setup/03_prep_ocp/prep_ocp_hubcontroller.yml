@@ -5,11 +5,11 @@
 
   tasks:
     - name: create hubcontroller project
-      command: oc new-project hub-controller2
+      command: oc new-project hub-controller
       ignore_errors: True
 
     - name: download cacerts file
-      command: wget -q -L  https://raw.githubusercontent.com/nexus-Six/openshift-robot-hackathon/master/hub_controller/jks/cacerts -O ./cacerts   
+      command: wget -q -L  https://raw.githubusercontent.com/nexus-Six/robot-hackathon-hub-controller/master/jks/cacerts -O ./cacerts   
 
     - name: create cacert jks configmap
       block:
@@ -21,7 +21,7 @@
 
     - name: download robotmapping configmap file
       get_url:
-        url: https://raw.githubusercontent.com/nexus-Six/openshift-robot-hackathon/master/hub_controller/templates/robotmapping-configmap.yaml
+        url: https://raw.githubusercontent.com/nexus-Six/robot-hackathon-hub-controller/master/templates/robotmapping-configmap.yaml
         dest: ./robotmapping-configmap.yaml
     
     - name: create configmap robotmapping jks configmap
