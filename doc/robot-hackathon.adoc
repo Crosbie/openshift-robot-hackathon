@@ -25,8 +25,8 @@ shaping and more.
 
 Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
 
-* Click on `*SIGN IN*`
-* Login with your team credentials (`<GUID>`, password as provided)
+* Click on `*SIGN IN*` in the upper right
+* Login with your team credentials (`*<GUID>*`, password as provided)
 * After login you will see the API key you need to access the robot API
 
 TIP: Look around in the 3Scale web UI, you will see examples of how to invoke 
@@ -70,11 +70,9 @@ Now that you can access and control your robot through the API let's get
 started with programming the robot by developing applications on our container 
 platform. 
 
-Your team user has already been created for you, your user name is `*<GUID>*`. Open your browser and access the OpenShift web UI:
+Your team user has already been created for you, your user name is `*<GUID>*`. Click on the link below and access the OpenShift web UI:
 
-----
-https://master.berlin-<CHANGEME>.openshiftworkshop.com/console
-----
+https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-618f.openshiftworkshop.com/console^]
 
 * Login as your team user, `*<GUID>*`, the password will be provided. 
 * Look around
@@ -104,9 +102,8 @@ a browser-based, cloud-native IDE running in the OpenShift environment.
 
 Access CodeReady in your browser:
 
-----
-http://che-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com/
-----
+http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
+
 
 Login with `*<GUID>*` as username and the provided password.
 
@@ -187,9 +184,16 @@ HttpEntity<MultiValueMap<String, String>>(paramMap,
 * Mission 4 : Navigate an unknown labyrinth
 * Mission X : Prometheus / Grafana Dashboard (Power, Distance)
 
+== Links
 
+3Scale Web UI: +
+https://rh-test.3scale.net/[https://rh-test.3scale.net/^]
 
+OpenShift Web UI: +
+https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-618f.openshiftworkshop.com/console^]
 
+Che Web UI: +
+http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
 
 
 
