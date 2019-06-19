@@ -195,7 +195,8 @@ https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-6
 Che Web UI: +
 http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
 
-
+Gogs Web UI: +
+http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
 
 
 
