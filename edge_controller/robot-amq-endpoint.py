@@ -10,6 +10,15 @@ from proton import Message
 from proton.handlers import MessagingHandler
 from proton.reactor import AtMostOnce, Container
 
+GPG = gopigo3.GoPiGo3()
+easygpg = easy.EasyGoPiGo3()
+
+distance_sensor = easygpg.init_distance_sensor()
+servo = easygpg.init_servo()
+servo.reset_servo()
+easygpg.set_speed(300)
+easygpg.close_eyes()
+
 class HelloWorld(MessagingHandler):
     
     def __init__(self, url, address):
@@ -20,7 +29,7 @@ class HelloWorld(MessagingHandler):
     @staticmethod
     def forward(length_in_cm):	
         HelloWorld.start_executing ("forward : " + str(length_in_cm))	
-        #easygpg.drive_cm(length_in_cm)
+        easygpg.drive_cm(float(length_in_cm))
         HelloWorld.stop_executing("forward : " + str(length_in_cm))
         return "OK"
 
@@ -83,6 +92,11 @@ class HelloWorld(MessagingHandler):
         stop_executing("power : " + current_voltage)
         return(current_voltage)    
     
+    @staticmethod
+    def status():
+        HelloWorld.start_executing ("status")
+        return("OK")    
+    
     
     def on_start(self, event):
         print("on start" + self.url)
@@ -130,6 +144,9 @@ class HelloWorld(MessagingHandler):
 
         elif 'power' == str(operation):
             ret = HelloWorld.power()                             
+        
+        elif 'status' == str(operation):
+            ret = HelloWorld.status()                             
             
         else:
             print("operation {0} not implemented").format(operation)

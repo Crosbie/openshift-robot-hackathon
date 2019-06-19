@@ -1,0 +1,12 @@
+= Robot Hackathon - PHP module
+
+Good choice Team <GUID>! With the help of php you will crush all the other Teams!
+
+Robot Services Ltd has provided a basic php application to 
+quickly get you started with your first robot application.
+
+. Login into http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com[Gogs^] with `*<GUID>*` and the provided password.
+. Click on the `*+*` in the upper right and choose `*New Migration*`.
+. In the `*Clone Address*` field write `*https://github.com/Tuxos/robot-hackathon-starter-app-php*`
+. In the `*Repository Name*` field write `*r2d2-php*`
+. Click on `*Migrate Repository*`
