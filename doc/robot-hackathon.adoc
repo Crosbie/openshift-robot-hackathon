@@ -182,7 +182,6 @@ HttpEntity<MultiValueMap<String, String>>(paramMap,
 * Mission 2 : Use Distance Sensor: Stop in front of the robot barrier
 * Mission 3 : Navigate a predefined labyrinth
 * Mission 4 : Navigate an unknown labyrinth
-* Mission X : Prometheus / Grafana Dashboard (Power, Distance)
 
 == Links
 
