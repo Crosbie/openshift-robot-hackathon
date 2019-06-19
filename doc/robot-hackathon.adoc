@@ -162,6 +162,22 @@ HttpEntity<MultiValueMap<String, String>>(paramMap,
 "/left/90", request, String.class);
 ----
 
+WARNING: Solution (for run.php) Below!
+----
+<?php
+
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90); 
+  
+?>
+----
+
 === Missions
 
 * Mission 1 : Have the robot stop exactly at a certain point
