@@ -1,5 +1,7 @@
 = Robot Hackathon - PHP module
 
+Good choice Team <GUID>! With the help of php you will crush all the other Teams!
+
 Robot Services Ltd has provided a basic php application to 
 quickly get you started with your first robot application.
 
