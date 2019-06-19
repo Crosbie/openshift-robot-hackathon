@@ -1,31 +1,57 @@
 = Robot Hackathon - Java module
 
-Robot Services Ltd has provided a basic Spring Boot-based Java application to 
+Robot Services Ltd has provided a basic Spring Boot-based Java application template to 
 quickly get you started with your first robot application. It's provided in a 
-Git (Gogs) repository hosted on the OpenShift cluster. 
+GitHub repository. You may mirror this template project into your team's Git (Gogs) repository running in OpenShift and start to developing in it.
 
-To get this application into your workspace:
+To mirror the template project into Gogs:
 
-* In your Che workspace, click *Import Project*
+* Go to the Gogs url in you browser: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com
+* Click *Sign In* in the top right corner 
+* Log in (if required)
+** Username : <GUID>
+** password : <The standard password provided>
+* in the top right corner click on the plus sign (Create) and choose *New Migration* 
+* Enter
+** *Clone Address :* https://github.com/nexus-Six/robot-hackathon-starter-app-java.git
+** *Repository Name :* <GUID>-robot-app
+* Keep the rest as is
+* Click on *Migrate Repository*
+
+Now you have the application template in your team's git repository and can get started with hacking. For this you need to clone your repository into your Development Environment (Eclipse Che) running on OpenShift.
+
+To clone you repository into Che : 
+
+* Go to the Che : http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com
+* Log in (if required) 
+** Username : <GUID>
+** Password : <The standard password provided>
+* On the screen *New Workspace* enter
+** *Name :* <GUID>-workspace
+** *Select Stack :* Java Cloud-Native
+* In the top right corner click *Create*
+* In the top right corner click *Open*
+* Now you new workspace will be provisioned as new Pod in OpenShift - This may take a while 
+* Once your workspace is ready, click *Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
-** *URL*: http://gogs-lab-infra.apps.berlin-<CHANGEME>.openshiftworkshop.com
-** *Name*: Adapt the name to something sensible
+** *URL of your Git repo*: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-app.git
+** *Name*: 
 * In the next dialog choose *Java -> Maven*
 * Click *Save*
 
 ==== Login *oc* to OpenShift from CodeReady workspace
 
 Before deploying applications from your Che workspace to OpenShift, you have to 
-login the OpenShift client (oc) to the OpenShift environment. 
+login the OpenShift client (oc) to the OpenShift environment. The fabric8 Maven plugin will use the existing oc connection to deploy you application directly into your OpenSHift project. 
 
 Get the login string from the OpenShift web UI:
 
 * In the web UI, click the top right question mark, choose *Command Line Tools*
 * Now a form opens, copy the *oc login...* string *using the copy button*
-* Paste into the Che terminal, press *Enter*
-* You should get a welcome message as you are now logged into OpenShift
-* Try running `oc whoami` to make sure
+* Go to the Che Terminal window in lower workspace pane paste the command, then press *Enter*
+* You should see a welcome message as you are now logged into OpenShift
+* Try running `oc whoami` to make sure you are logged in
 
 === Running the Application Locally
 
@@ -33,7 +59,7 @@ Get the login string from the OpenShift web UI:
 lower workspace pane. Change into your project directory:
 
 ----
-cd /projects/robot-hackathon-<GUID>
+cd /projects/<GUID>-app
 ----
 
 Now build and run the application locally:
@@ -50,7 +76,7 @@ application web frontend, look up the URL:
 
 * Again using the *+* sign, open a *Servers* view.
 * Under *Reference* search for *Tomcat8*
-* Click the URL, this will take you to the web page
+* Click the URL, this will take you to the web page of your application
 
 By clicking the *Run* button you start the *run* method of the application. 
 Using the initial check out this will print a log message you will see in the 
@@ -67,12 +93,12 @@ As a first example go and change the log message and the standard output:
 
 ----
 public Object run() {
-        System.out.println("Hello Team");
-        String response = "Hello Team";
+        System.out.println("Hello <GUID> Team");
+        String response = "Hello <GUID> Team";
         // Example GET invokation of the Robot API
 ----
 
-Springboot will take care of recompiling and hot-swapping your code change. 
+Spring boot will take care of recompiling and hot-swapping your code change. 
 Wait until this has finished and run again by pressing *Run* on the web page.
 
 Do this as long as you want, the goal is to get familiar with the process.
@@ -87,21 +113,20 @@ containerized service in OpenShift, deployable where ever you want, you have to
 build and deploy a container image from your application. And guess what? It's 
 easy!
 
-To deploy to OpenShift, run:
+To deploy to OpenShift, in the terminal enter and run:
 
 ----
 mvn clean fabric8:deploy -Popenshift -DskipTests
 ----
 
-This time, the command will return because the code was deployed in a 
+This will compile your java code, create a Docker image from it, push the image to the OpenShift container registry and then deploy it to your OpenShift project. This time, the command will return because the code was deployed in a 
 container/pod in OpenShift. Go to the OpenShift web console and open your 
 project. You might see the build still running, after it has finished, the 
 route to externally access the application will be visible in the upper right 
 corner. It will look like:
 
 ----
-http://hub-controller-live-<GUID>-project.apps-<CHANGEME>.generic.opentlc.
-com 
+http://hub-controller-live-<GUID>-project.apps.berlin-618f.openshiftworkshop.com 
 ----
 
 Clicking the route will take you to your applications web page again! But this 
@@ -110,3 +135,46 @@ time in the cloud!
 Try running the *run()* method again, it should do the same as before. To see 
 the log message, click the blue circle with the pod name and click on the 
 *Logs* tab.
+
+Now your basic development and deployment workflow is ready. 
+
+=== Challenge
+
+Task: Make your robot drive in a square with approx 20cm edge length
+
+Hints:
+
+* Plan what your robot should do, check the space for the square.
+* Look up the API calls you need (remember the API documentation?)
+* Change the code in the *run()* method (have a look at the commented out code 
+examples)
+* Test locally in Che if you want to
+* Be aware that the motors and sensors of the robot are not a 100% precise. Sou you may need to add some adjustment to your turns and moves.
+* Deploy to OpenShift
+
+WARNING: Solution (Java) Below!
+
+----
+ MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
+String>();
+        paramMap.add("user_key", "<API Key");
+        HttpEntity<MultiValueMap<String, String>> request = new 
+HttpEntity<MultiValueMap<String, String>>(paramMap,
+                new LinkedMultiValueMap<String, String>());
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+----

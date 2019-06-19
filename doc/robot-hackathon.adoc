@@ -99,75 +99,40 @@ CodeReady provides development environment for several languages and runtimes. Y
 ==== Launch your workspace from CodeReady
 
 After login you are in the Workspace management view of CodeReady. Add your 
-workspace in CodeReady and choose `Java` or `Python` or `php` as your programming language:
+workspace in CodeReady and choose `Java` or `Python` or `php` as your programming language, dpending on the language that you want to develop you robot application in:
 
 * *NAME*: `<GUID>-robot-app-workspace` 
-* *SELECT STACK*: `Java` / `Python` / `php`
+* *SELECT STACK*: `Java Cloud-Native` / `Python` / `php`
 * Click `*CREATE*`
 * After creation has finished a pop-up appears, click *OPEN*.
 
-Now your CodeReady workspace should open in your browser. 
+Now your CodeReady workspace is running as a new Pod in OpenShift should open in your browser. 
 
 TIP: Creating a new workspace can take some time.
 
-==== Get Application Quickstart, which one depends on your choice before
+==== Get Your Application Quickstart Template Depending on your Programming Language Choice Before (Java, Python, Php)
+
+===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-java-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Java^]
 
 ===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-python-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Python^]
 
 ===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-php-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with php^]
 
-===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-java-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Java^]
+== Now the Fun Starts!
 
-== Now the Fun Starts! 
-
-Now you should have all the information to start hacking the robot!
+You should have a completely set up Cloud Native Development Environment by now in the programming language of your choice.  Now you should have all the information to start hacking the robot!
 
 === Challenge
 
-Task: Make your robot drive in a square with approx 20cm edge length
+To ramp up your robot programming skills, complete this challenge. Give it a try and expand the solution provided when stuck. 
 
-Hints:
+*Use Distance Sensor:* Stop approximately 10cm in front of the robot barrier
 
-* Plan what your robot should do, check the space for the square.
-* Look up the API calls you need (remember the API documentation?)
-* Change the code in the *run()* method (have a look at the commented out code 
-examples)
-* Test locally in Che if you want to
-* Deploy to OpenShift
+=== Mission
 
-WARNING: Solution (Java) Below!
+As explained your final mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
 
-----
- MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
-String>();
-        paramMap.add("user_key", "<API Key");
-        HttpEntity<MultiValueMap<String, String>> request = new 
-HttpEntity<MultiValueMap<String, String>>(paramMap,
-                new LinkedMultiValueMap<String, String>());
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/forward/20", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/left/90", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/forward/20", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/left/90", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/forward/20", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/left/90", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/forward/20", request, String.class);
-        response = restTemplate.postForObject(hubControllerEndpoint + 
-"/left/90", request, String.class);
-----
-
-=== Missions
-
-* Mission 1 : Have the robot stop exactly at a certain point
-* Mission 2 : Use Distance Sensor: Stop in front of the robot barrier
-* Mission 3 : Navigate a predefined labyrinth
-* Mission 4 : Navigate an unknown labyrinth
+Good Luck and Robotz Go, Go, Go! 
 
 == Links
 
