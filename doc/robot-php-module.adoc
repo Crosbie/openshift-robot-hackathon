@@ -8,7 +8,19 @@ quickly get you started with your first robot application.
 . Login into http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[Gogs^] with `*<GUID>*` and the provided password.
 . Click on the `*+*` in the upper right and choose `*New Migration*`.
 . In the `*Clone Address*` field write `*https://github.com/Tuxos/robot-hackathon-starter-app-php*`
-. In the `*Repository Name*` field write `*r2d2-php*`
+. In the `*Repository Name*` field write `*<GUID>-php*`
 . Click on `*Migrate Repository*`
 
-In http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[Eclipse Che^] open your click on `*Add Project*`
+In http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[Eclipse Che^] open your `Workspace` click on `*Import Project*`, choose `GIT` as Version Control System.
+
+In the `*URL*` field paste your GIT Project from Gogs. It should be: `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/bender/<GUID>-php*`.
+
+Edit the link and add your username and passwort to it. It should look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/bender/<GUID>-php*`
+
+Don't forget to use the password which was provided to you.
+
+Click on `*Import*` and choose `*PHP*`, then click `*Save*`.
+
+
+
+
