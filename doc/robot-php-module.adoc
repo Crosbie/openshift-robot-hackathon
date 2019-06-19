@@ -58,12 +58,12 @@ In OpenShift rebuild you application and test the new `run.php` script.
 
 == Challenge
 
-Task: Make your robot drive in a square with approx 20cm edge length
+*Task:* Make your robot drive in a square with approx 20cm edge length
 
-Hints:
+*Hints:*
 
 * Plan what your robot should do, check the space for the square.
 * Look up the php calls you need (look at the landingpage or in `run.php`)
-* Change the code in the `run.php`
+* Change the code in `run.php` and commit it with Eclipse Che
 * Deploy to OpenShift
 * Test your `run.php`
