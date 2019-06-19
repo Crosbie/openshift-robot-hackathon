@@ -135,7 +135,7 @@ examples)
 * Test locally in Che if you want to
 * Deploy to OpenShift
 
-WARNING: Solution Below!
+WARNING: Solution (Java) Below!
 
 ----
  MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
