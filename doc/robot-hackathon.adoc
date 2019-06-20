@@ -120,11 +120,16 @@ TIP: Creating a new workspace can take some time.
 
 == Now the Fun Starts!
 
-You should have a completely set up Cloud Native Development Environment by now in the programming language of your choice.  Now you should have all the information to start hacking the robot!
+Okay, by now you should have:
+
+* set up a complete Cloud Native Development Environment in the programming language of your choice.  
+* gone through some training missions to get you up to speed
+
+You have all the information to get started hacking the robot!
 
 === Mission
 
-As explained your final mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
+As explained your mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
 
 Good Luck and Robotz Go, Go, Go! 
 
