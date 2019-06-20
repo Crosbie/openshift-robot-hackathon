@@ -114,7 +114,7 @@ WARNING: Solution Below!
 *>> _Click here for the solution_ <<*
 +++ </summary><div> +++
 
-This is the most simple way your run method could look like. It's obviously not very cleverly programmed, that's what you are here for!
+This is the most simple way your run method could look like. It's obviously not programmed in a smart way, that's what you are here for!
 
 ----
 def run():
