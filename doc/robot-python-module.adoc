@@ -7,7 +7,7 @@ Good choice of programming language Team <GUID>! With the help of Python you wil
 Robot Services Ltd has provided a basic Python application to 
 quickly get you started with your first robot application.
 
-== Clone the Python Example into Gogs
+== Clone the Python Example into your Gogs Git Repo
 
 . Login into http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[Gogs^] with `*<GUID>*` and the provided password.
 . Click on the `*+*` in the upper right and choose `*New Migration*`.
@@ -15,76 +15,100 @@ quickly get you started with your first robot application.
 . In the `*Repository Name*` field write `*<GUID>-python*`
 . Click on `*Migrate Repository*`
 
-== Configure the Application
+== Configure and Run
 
-Go to your `*<GUID>-python*` project and edit the `*config.php*`.
+In this Hackathon you'll use Eclipse Che for development (you can of course use any dev tool you want as long as you can connect to your Git repo in Gogs, but Che is fun). To get started you have to:
 
-Change the API Key to your 3Scale API Key: `*$apikey = "<GUID>";*`
+* Create a new Che Workspace for your programming language of choice, you should have done this already. 
+* Clone your Gogs repository into a Che project
+* Do some basic configuration 
+* Start the application for the first time
 
-Click on `*Commit changes*`.
+=== Clone Gogs Repo into Che Workspace
 
-In http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[Eclipse Che^] open your `Workspace` click on `*Import Project*`, choose `GIT` as Version Control System.
+If you don't have http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[Eclipse Che^] open in your browser, login as your team. Then open the `Workspace` you already created: choose it in the *Dashboard* or *Workspaces* view and click the *OPEN* button in the upper right corner. 
 
-In the `*URL*` field paste your GIT Project from Gogs. It should be: `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/bender/<GUID>-php*`.
+To start a new project with your sources from Gogs:
 
-Edit the link and add your username and passwort to it. It should look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/bender/<GUID>-php*`
+* Click `*Import Project*`, choose `GIT` as Version Control System.
+* Paste your GIT Project URL from Gogs. Get it by copying the HTTP URL from your Gogs account, it should look like `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<TEAMNAME>/<TEAMNAME>-python.git`*
+* Edit the link and add your username and passwort to it for push authentication. It should now look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<TEAMNAME>/<TEAMNAME>-php*`
+* Click on `*Import*`
+* In the project configuration window that comes up next choose `*Python*`
+* Click `*Save*`.
 
-Don't forget to use the password which was provided to you.
+In addition you have to edit the GIT user profile in Che: 
 
-Click on `*Import*` and choose `*PHP*`, then click `*Save*`.
+* In the menu choose `*Profile->Prereferences*`
+* Select `*GIT Committer*`
+* Enter `*<TEAMNAME>*` in the name field and `*<TEAMNAME>@example.com*` in the E-Mail field. 
+* Click on `*Save*` and close the Window.
 
-We must edit the GIT user profile. For that click on `*Profile*`, `*Prereferences*`, choose `*GIT Committer*` enter `*<GUID>*` in the name field and `*<GUID>@example.com*` in the E-Mail field. Click on `*Save*` and close the Window.
+Now is a good time to have a first look at the Python template application. It's deliberately simple as it's just meant to be a starting point. It's based on the Flask framework, it creates a simple webpage with a button to allow you to execute a method *run*. 
 
-Let's have a first build in OpenShift.
+=== Basic Application Configuration
+
+Because the application you cloned is a template to make it work with your robot you have to configure the connection details first:
+
+* Expand the project tree and open the *config.py* file by double-clicking it
+* Change the *URI* and *APITOKEN* parameters
+** You could look up the URI in your 3Scale account, it should be *https://api-2445582274375.staging.gw.apicast.io/api/robot/*.
+** For *APITOKEN* fill in your team name to route your requests to the proper robot
+
+== First build in OpenShift.
+
+You're ready to run the application the first time! But first make sure your team robot is connected to the power supply and switched on!
 
 Open the https://master.berlin-618f.openshiftworkshop.com/console[OpenShift Web UI^]. If not already logged in, log in with `*<GUID>*` and the provided password.
 
 . Click on the `*<GUID>-project*`
-. Click on `*Browse Project*`, `*Languages*`, `*PHP*`, `*PHP*` again.
+. Click on `*Browse Project->Languages->Python*` and choose `*Phython*`.
 . Click on `*Next*`
-. As `Application Name` use `*<GUID>-php*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-php*`
+. As `Application Name` use `*<GUID>-phython*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-php*`
 . Click on `*Create*` and `*Close*`
 . Click on `*Overview*` and then on the little `*>*` beside the `Deployment Config`.
 
-After the build is complete, click the Link to your new created Application.
+=== Check it
 
-Now you see the PHP Robocontroll Landingpage. From here you can test some basic functionalities.
+After the build is complete, click the Link to your newly created application. It'll take you to the Python Robot Control Landing Page. From here you can execute a simple connectivity test of your robot by clicking *Status*.
 
-If you click on the green `*Run*` butten, he will execute the `*run.php*` script from the Gogs project.
+=== Run it
 
-To edit the `*run.php*` script, go to Eclipse Che, expand the `*<GUID>-project*` and double click on `*run.php*`.
+To execute the *run* method click the `*Run*` button. Execution will take some seconds but then the robot should move some centimeters forward.
 
-Edit the script as wanted.
+If the robot moved, your setup is good and ready to go for the Hackathon!
 
-Then click on `*Git*`, `*Commit*`, choose a Commit message as you want. Don't forget to click on the `*Push commited changes*` checkmark. Then click on `*Commit*`.
+== Start Hacking
 
-In OpenShift rebuild you application and test the new `run.php` script.
+The easiest way to add code to control the robot is to open the file *wsgi.py* and then edit the *run* method. To get started just comment out 
 
-== Challenge
+and remove the comments from
+
+to commit the code changes to Git:
+
+* In Che click on `*Git->Commit*`
+* Type in a Commit message
+* Check the `*Push commited changes*` checkbox
+* Click on `*Commit*`.
+
+After the code changes have been pushed to Git/Gogs you can build a new version of your app in OpenShift.
+
+== Training Missions
+
+Here are some training missions to get you started.
 
 *Task:* Make your robot drive in a square with approx 20cm edge length
 
 *Hints:*
 
 * Plan what your robot should do, check the space for the square.
-* Look up the php calls you need (look at the landingpage or in `run.php`)
-* Change the code in `run.php` and commit it with Eclipse Che
+* Look up the robot API calls you might need in 3Scale
+* Add code in the *run* method and commit/push it with Eclipse Che
 * Keep in mind that motors ans sensors of the robot are not 100 % precise, so you may need to compensate in your code
 * Deploy to OpenShift
-* Test your `run.php`
+* Test your code by running it from the control page
 
-WARNING: Solution (for run.php) Below!
+WARNING: Solution Below!
 ----
-<?php
-
-  forward(20);
-  turnright(90);
-  forward(20);
-  turnright(90);
-  forward(20);
-  turnright(90);
-  forward(20);
-  turnright(90); 
-  
-?>
+mmm
 ----
