@@ -31,8 +31,8 @@ If you don't have http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[E
 To start a new project with your sources from Gogs:
 
 * Click `*Import Project*`, choose `GIT` as Version Control System.
-* Paste your GIT Project URL from Gogs. Get it by copying the HTTP URL from your Gogs account, it should look like `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<TEAMNAME>/<TEAMNAME>-python.git`*
-* Edit the link and add your username and passwort to it for push authentication. It should now look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<TEAMNAME>/<TEAMNAME>-php*`
+* Paste your GIT Project URL from Gogs. Get it by copying the HTTP URL from your Gogs account, it should look like `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-python.git`*
+* Edit the link and add your username and passwort to it for push authentication. It should now look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-php*`
 * Click on `*Import*`
 * In the project configuration window that comes up next choose `*Python*`
 * Click `*Save*`.
@@ -41,7 +41,7 @@ In addition you have to edit the GIT user profile in Che:
 
 * In the menu choose `*Profile->Prereferences*`
 * Select `*GIT Committer*`
-* Enter `*<TEAMNAME>*` in the name field and `*<TEAMNAME>@example.com*` in the E-Mail field. 
+* Enter `*<GUID>*` in the name field and `*<GUID>@example.com*` in the E-Mail field. 
 * Click on `*Save*` and close the Window.
 
 Now is a good time to have a first look at the Python template application. It's deliberately simple as it's just meant to be a starting point. It's based on the Flask framework, it creates a simple webpage with a button to allow you to execute a method *run*. 
@@ -68,11 +68,11 @@ Open the https://master.berlin-618f.openshiftworkshop.com/console[OpenShift Web 
 . Click on `*Create*` and `*Close*`
 . Click on `*Overview*` and then on the little `*>*` beside the `Deployment Config`.
 
-=== Check it
+=== Check Robot
 
 After the build is complete, click the Link to your newly created application. It'll take you to the Python Robot Control Landing Page. From here you can execute a simple connectivity test of your robot by clicking *Status*.
 
-=== Run it
+=== Run Robot!
 
 To execute the *run* method click the `*Run*` button. Execution will take some seconds but then the robot should move some centimeters forward.
 
