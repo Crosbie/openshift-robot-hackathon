@@ -98,7 +98,7 @@ After the code changes have been pushed to Git/Gogs you can build a new version 
 
 Here are some training missions to get you started.
 
-*Task:* Make your robot drive in a square with approx 20cm edge length
+=== Task: Make your robot drive in a square with approx 10 cm edge length
 
 *Hints:*
 
@@ -106,7 +106,7 @@ Here are some training missions to get you started.
 * Look up the robot API calls you might need in 3Scale
 * Add code in the *run* method and commit/push it with Eclipse Che
 * Deploy to OpenShift
-* Test your code by running it from the control page
+* Test your code by running it from the robot control page
 
 WARNING: Solution Below!
 
@@ -114,7 +114,7 @@ WARNING: Solution Below!
 *>> _Click here for the solution_ <<*
 +++ </summary><div> +++
 
-This is the most simple way your run method could look like. It's obviously not programmed in a smart way, that's what you are here for!
+This is the most simple way your *run* method could look like. It's obviously not programmed in a smart way, that's what you are here for!
 
 ----
 def run():
