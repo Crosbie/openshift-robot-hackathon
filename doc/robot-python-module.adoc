@@ -122,11 +122,6 @@ This is the most simple way your *run* method could look like. It's obviously no
 
 ----
 def run():
-    #response = requests.get(application.config['URI'] + '/power' + '?user_key=' + application.config['APITOKEN'],verify=False)
-    # Example GET invokation of the Robot API       
-    #response = requests.get(application.config['URI'] + '/distance' + '?user_key=' + application.config['APITOKEN'], verify=False)  
-        
-    # Example POST invokation of the Robot API  
     data = {'user_key': application.config['APITOKEN']} 
     response = requests.post(application.config['URI'] + '/forward/10', data=data, verify=False)
     response = requests.post(application.config['URI'] + '/right/90', data=data, verify=False)
@@ -139,5 +134,31 @@ def run():
 ----
 
 +++ </div></details> +++
+
+=== Task: Make your robot stop before hitting the wall
+
+Setup a barrrier/wall and program your robot so it moves to the wall but stops in time before hitting it. You'll need the forward() and distance() functions.
+
+WARNING: Solution Below!
+
++++ <details><summary> +++
+*>> _Click here for the solution_ <<*
++++ </summary><div> +++
+
+This is again not programmed in a particularly smart way, it's just an intro. You can do better!
+
+----
+def run():
+    data = {'user_key': application.config['APITOKEN']} 
+    response = requests.get(application.config['URI'] + '/distance' + '?user_key=' + application.config['APITOKEN'], verify=False)
+    while float(response.text) > 100:
+        print (str(response.text))
+        requests.post(application.config['URI'] + '/forward/5', data=data, verify=False)
+        response = requests.get(application.config['URI'] + '/distance' + '?user_key=' + application.config['APITOKEN'], verify=False)
+    return render_template('result.html', message=str("Wall coming up!"))
+----
+
++++ </div></details> +++
+
 
 
