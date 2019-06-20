@@ -98,8 +98,6 @@ After the code changes have been pushed to Git/Gogs you can build a new version 
 
 Here are some training missions to get you started.
 
-=== Task: Make your robot drive in a square with approx 10 cm edge length
-
 *Hints:*
 
 * Plan what your robot should do, check the space for the square.
@@ -107,6 +105,10 @@ Here are some training missions to get you started.
 * Add code in the *run* method and commit/push it with Eclipse Che
 * Deploy to OpenShift
 * Test your code by running it from the robot control page
+
+=== Task: Make your robot drive in a square
+
+Get your robot to drive in a square with approx 10 cm edge length.
 
 WARNING: Solution Below!
 
