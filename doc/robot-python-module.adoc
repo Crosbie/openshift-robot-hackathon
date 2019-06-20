@@ -106,6 +106,8 @@ Here are some training missions to get you started.
 * Deploy to OpenShift
 * Test your code by running it from the robot control page
 
+As everything happens in HTTP requests, if you manage to get your program into an endless loop or so, the easiest way to terminate your application might be to scale the Pod down in the OpenShift console.
+
 === Task: Make your robot drive in a square
 
 Get your robot to drive in a square with approx 10 cm edge length.
