@@ -110,13 +110,15 @@ Now your CodeReady workspace is running as a new Pod in OpenShift should open in
 
 TIP: Creating a new workspace can take some time.
 
-==== Get Your Application Quickstart Template Depending on your Programming Language Choice Before (Java, Python, Php)
+==== Setup Your Application Template 
+
+Depending on your programming language choice when preparing Eclipse Che (Java, Python or PHP) refer to the respective guide to set up an example application and for some introduction to it.
 
 ===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-java-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Java^]
 
 ===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-python-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Python^]
 
-===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-php-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with php^]
+===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-php-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with PHP^]
 
 == Now the Fun Starts!
 
