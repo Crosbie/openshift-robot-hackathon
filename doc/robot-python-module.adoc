@@ -13,6 +13,7 @@ quickly get you started with your first robot application.
 . Click on the `*+*` in the upper right and choose `*New Migration*`.
 . Fill in the `*Clone Address*` field: `*https://github.com/goetzrieger/robot-hackathon-starter-app-python.git*`
 . In the `*Repository Name*` field write `*<GUID>-python*`
+. Do *not* set the repo as mirror or as private!
 . Click on `*Migrate Repository*`
 
 == Configure and Run
@@ -62,7 +63,7 @@ You're ready to run the application the first time! But first make sure your tea
 Open the https://master.berlin-618f.openshiftworkshop.com/console[OpenShift Web UI^]. If not already logged in, log in with `*<GUID>*` and the provided password.
 
 . Click on the `*<GUID>-project*`
-. Click on *Browse Catalog*->*Languages*->*Python* and choose `*Phython*`.
+. Click on *Browse Catalog* -> *Languages* -> *Python* and choose `*Phython*`.
 . Click on `*Next*`
 . As `Application Name` use `*<GUID>-phython*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-php*`
 . Click on `*Create*` and `*Close*`
