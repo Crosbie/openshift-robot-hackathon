@@ -122,12 +122,6 @@ TIP: Creating a new workspace can take some time.
 
 You should have a completely set up Cloud Native Development Environment by now in the programming language of your choice.  Now you should have all the information to start hacking the robot!
 
-=== Challenge
-
-To ramp up your robot programming skills, complete this challenge. Give it a try and expand the solution provided when stuck. 
-
-*Use Distance Sensor:* Stop approximately 10cm in front of the robot barrier
-
 === Mission
 
 As explained your final mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
