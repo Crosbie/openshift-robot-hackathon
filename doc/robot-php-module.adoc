@@ -65,5 +65,23 @@ In OpenShift rebuild you application and test the new `run.php` script.
 * Plan what your robot should do, check the space for the square.
 * Look up the php calls you need (look at the landingpage or in `run.php`)
 * Change the code in `run.php` and commit it with Eclipse Che
+* Keep in mind that motors ans sensors of the robot are not 100 % precise, so you may need to compensate in your code
 * Deploy to OpenShift
 * Test your `run.php`
+
+WARNING: Solution (for run.php) Below!
+----
+<?php
+
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90);
+  forward(20);
+  turnright(90); 
+  
+?>
+----
+
