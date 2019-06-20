@@ -132,7 +132,6 @@ To ramp up your robot programming skills, complete this challenge. Give it a try
 
 As explained your final mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
 
-
 Good Luck and Robotz Go, Go, Go! 
 
 == Links
