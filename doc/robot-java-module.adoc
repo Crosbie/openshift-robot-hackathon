@@ -191,8 +191,6 @@ HttpEntity<MultiValueMap<String, String>>(paramMap,
 
 +++ </div></details> +++
 
-=== Task: Make your robot stop at a certain point before an obstacle
-
 === Task: Make your robot stop before hitting the wall
 
 Setup a barrrier/wall and program your robot so it moves to the wall but stops in time before hitting it. You'll need the forward() and distance() functions.
