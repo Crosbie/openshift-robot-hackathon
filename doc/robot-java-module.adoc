@@ -1,38 +1,38 @@
 = Robot Hackathon - Java module
 
+Welcome to the Java module. You choose wisely as Java is still one of the most popular programming languages around.  
+
 Robot Services Ltd has provided a basic Spring Boot-based Java application template to 
 quickly get you started with your first robot application. It's provided in a 
 GitHub repository. You may mirror this template project into your team's Git (Gogs) repository running in OpenShift and start to developing in it.
 
 To mirror the template project into Gogs:
 
-* Go to the Gogs url in you browser: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com
+* Go to the Gogs url in you browser: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
 * Click *Sign In* in the top right corner 
 * Log in (if required)
 ** Username : <GUID>
-** password : <The standard password provided>
-* in the top right corner click on the plus sign (Create) and choose *New Migration* 
+** Password : <The standard password provided>
+* In the top right corner click on the plus sign (Create) and choose *New Migration* 
 * Enter
 ** *Clone Address :* https://github.com/nexus-Six/robot-hackathon-starter-app-java.git
 ** *Repository Name :* <GUID>-robot-app
+* Make sure the repository is set to *public*
 * Keep the rest as is
 * Click on *Migrate Repository*
 
-Now you have the application template in your team's git repository and can get started with hacking. For this you need to clone your repository into your Development Environment (Eclipse Che) running on OpenShift.
+Now you have the application template in your team's git repository and can get started with hacking. For this you need to clone your repository into your Development Environment (Che) running on OpenShift.
 
 To clone you repository into Che : 
 
-* Go to the Che : http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com
+* Go back to Che : http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
 * Log in (if required) 
 ** Username : <GUID>
 ** Password : <The standard password provided>
-* On the screen *New Workspace* enter
-** *Name :* <GUID>-workspace
-** *Select Stack :* Java Cloud-Native
-* In the top right corner click *Create*
-* In the top right corner click *Open*
-* Now you new workspace will be provisioned as new Pod in OpenShift - This may take a while 
+* If you just loggend in again you can find you previously created workspace on the left
+** Doubleclick *<GUID>-robot-app-workspace* to open the workspace again        
 * Once your workspace is ready, click *Import Project*
+** You can also find this option in the top menu *Workspace > Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
 ** *URL of your Git repo*: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-app.git
@@ -40,16 +40,16 @@ To clone you repository into Che :
 * In the next dialog choose *Java -> Maven*
 * Click *Save*
 
-==== Login *oc* to OpenShift from CodeReady workspace
+==== Login *oc* to OpenShift from Che workspace
 
 Before deploying applications from your Che workspace to OpenShift, you have to 
-login the OpenShift client (oc) to the OpenShift environment. The fabric8 Maven plugin will use the existing oc connection to deploy you application directly into your OpenSHift project. 
+login the OpenShift cli-client (oc) to the OpenShift environment. The fabric8 Maven plugin will use the existing oc connection to deploy you application directly into your OpenShift project. 
 
 Get the login string from the OpenShift web UI:
 
 * In the web UI, click the top right question mark, choose *Command Line Tools*
 * Now a form opens, copy the *oc login...* string *using the copy button*
-* Go to the Che Terminal window in lower workspace pane paste the command, then press *Enter*
+* Go to the Che Terminal window in lower workspace pane and paste the command, then press *Enter*
 * You should see a welcome message as you are now logged into OpenShift
 * Try running `oc whoami` to make sure you are logged in
 
@@ -86,8 +86,10 @@ terminal Tomcat is running in.
 
 Now it's time to make the first change to the application code. The code 
 structure is standard-Maven, have a look around. The log message you just 
-saw is triggered in the *run()* method of class 
+saw is triggered in the *run()* method of Java class 
 `../src/main/java/io/openshift/booster/service/RobotEndpoint.java`
+
+TIP: Che behaves similar to IDEs like Eclipse, VSCode and IntelliJ.  Expand the directory structure tree on the left side until you see the file *RobotEndpoint.java* 
 
 As a first example go and change the log message and the standard output:
 
@@ -119,6 +121,8 @@ To deploy to OpenShift, in the terminal enter and run:
 mvn clean fabric8:deploy -Popenshift -DskipTests
 ----
 
+  
+
 This will compile your java code, create a Docker image from it, push the image to the OpenShift container registry and then deploy it to your OpenShift project. This time, the command will return because the code was deployed in a 
 container/pod in OpenShift. Go to the OpenShift web console and open your 
 project. You might see the build still running, after it has finished, the 
@@ -134,25 +138,31 @@ time in the cloud!
 
 Try running the *run()* method again, it should do the same as before. To see 
 the log message, click the blue circle with the pod name and click on the 
-*Logs* tab.
+*Logs* tab. This is also the first place to look at when your checking for issues
+with you deployed application.
+
+TIP: As you may know the buildtool Maven downloads a lot of Java libraries for you application
+from the internet.  This takes some time during the first compile so be patient. To speed up the subsequent compiles, add the option -o to the command. This will tell Maven to work in offline mode, as it has already downloaded alll required libaries. 
 
 Now your basic development and deployment workflow is ready. 
 
-=== Challenge
+== Training Mission
 
-Task: Make your robot drive in a square with approx 20cm edge length
+=== Task: Make your robot drive in a square with approx 20cm edge length
 
 Hints:
 
 * Plan what your robot should do, check the space for the square.
 * Look up the API calls you need (remember the API documentation?)
 * Change the code in the *run()* method (have a look at the commented out code 
-examples)
+examples for REST POST and Get Requests)
 * Test locally in Che if you want to
-* Be aware that the motors and sensors of the robot are not a 100% precise. Sou you may need to add some adjustment to your turns and moves.
-* Deploy to OpenShift
+* Be aware that the motors and sensors of the robot are not a 100% precise. So you may need to add some adjustment to your turns and moves.
+* Deploy to OpenShift and run
 
-WARNING: Solution (Java) Below!
++++ <details><summary> +++
+*>> _Click here for the solution_ <<*
++++ </summary><div> +++
 
 ----
  MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
@@ -178,3 +188,46 @@ HttpEntity<MultiValueMap<String, String>>(paramMap,
         response = restTemplate.postForObject(hubControllerEndpoint + 
 "/left/90", request, String.class);
 ----
+
++++ </div></details> +++
+
+=== Task: Make your robot stop at a certain point before an obstacle
+
+=== Task: Make your robot stop before hitting the wall
+
+Setup a barrrier/wall and program your robot so it moves to the wall but stops in time before hitting it. You'll need the forward() and distance() functions.
+
++++ <details><summary> +++
+*>> _Click here for the solution_ <<*
++++ </summary><div> +++
+
+This is again not programmed in a particularly smart way, it's just an intro. Feel free to enhance!
+
+----
+ MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
+String>();
+        paramMap.add("user_key", "<API Key");
+        HttpEntity<MultiValueMap<String, String>> request = new 
+HttpEntity<MultiValueMap<String, String>>(paramMap,
+                new LinkedMultiValueMap<String, String>());
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/forward/20", request, String.class);
+        response = restTemplate.postForObject(hubControllerEndpoint + 
+"/left/90", request, String.class);
+----
+
++++ </div></details> +++
+
+Now return to the main instruction document 

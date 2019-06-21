@@ -23,6 +23,9 @@ restrict and limit who can use the API. The API management platform takes care
 of role-based access control, setting up accounts, monitoring, routing, traffic 
 shaping and more.
 
+WARNING: Please accesss all the follwing URLs as a team on one laptop (not individually), as you are now a DevOps 
+team and want to be on the same page. Also the cloud system is sized for one account per team performance wise. 
+
 Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
 
 * Click on `*SIGN IN*` in the upper right
@@ -31,10 +34,10 @@ Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-te
 
 TIP: Look around in the 3Scale web UI, you will see examples of how to invoke 
 the API of your robot. 3Scale will take care of routing your requests to the 
-proper robot. 
+Hub-Controller which in turn accesses your robot. 
 
 WARNING: The most important information is the *Key* from the *Credentials* 
-box. Using this key as *user_key* in your API calls takes care of routing the 
+box. Using this key as parameter *user_key* in your API calls takes care of routing the 
 requests to the proper robot. Your *Key* is: `*<GUID>*`
 
 ==== Testing the API
@@ -48,20 +51,20 @@ curl https://api-2445582274375.staging.gw.apicast.io:443/api/robot/status?user_k
 OK
 ----
 
-If you don't have a notebook with `curl` don't worry, you can test this also through the 3scale webinterface.
+If you don't have a laptop with the `curl`-command don't worry, you can test this also through the 3Scale webinterface.
 
 ==== Exploring the Robot API
 
 There are a number of ways to test the connectivity from your PC via 3Scale to 
-the robot (there are a couple of hops involved, check back to the 
-architecture). You basically need to construct an URL to query the API using 
+the robot (there are a couple of hops involved, check back with the 
+infrastructure diagram if in doubt). You basically need to construct an URL to query the API using 
 the 3Scale access token.
 
 While in the 3Scale web UI access the *DOCUMENTATION* link in the menu bar. 
-Here you will find the API documentation of all robot operation currently 
+Here you will find the REST API documentation of all robot operation currently 
 exposed in OpenAPI/Swagger format.
 
-You can test the available API calls from here, this will actually go to your 
+You can test the available API calls from here. These will actually go to your 
 robot. Just remember to fill in `*<GUID>*` as `USER_KEY` when you test.  
 
 === Accessing OpenShift
@@ -76,43 +79,43 @@ https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-6
 
 * Login as your team user, `*<GUID>*`, the password will be provided. 
 * Look around
-* You will see an error: `An error occurred getting metrics.` This is ok, because we don't installed Metrics. Please click on `*Don't Show Me Again*`.
+* You will see an error: `An error occurred getting metrics.` This is ok, because we haven't installed Metrics. Please click on `*Don't Show Me Again*`.
 
 === Your first application
 
-So we are ready to start some coding. Normally you would now have to setup your 
-dev environment... install IDE, language runtimes, build tool, version control 
-system/access, checkout code.... etc. And most of this specific to your OS.
+So we are ready to start with some coding. Normally you would now have to setup your 
+dev environment on your laptop... install IDE, language runtimes, build tools, version control 
+system/access, checkout code.... etc. And most of this would be specific to your OS.
 
-Because we work in a cutting edge environment we'll use CodeReady
+Because we work in a cutting edge environment we'll use Eclipse Che
 a browser-based, cloud-native IDE running in the OpenShift environment.
 
-Access CodeReady in your browser:
+Access Che in your browser:
 
 http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
 
 
 Login with `*<GUID>*` as username and the provided password.
 
-CodeReady provides development environment for several languages and runtimes. You have the choice between Python, php and Java.
+Che provides development environment for several languages and runtimes. You have the choice between Python, php and Java.
 
-==== Launch your workspace from CodeReady
+==== Launch your workspace from Che
 
-After login you are in the Workspace management view of CodeReady. Add your 
-workspace in CodeReady and choose `Java` or `Python` or `php` as your programming language, dpending on the language that you want to develop you robot application in:
+After login you are in the Workspace management view of Che. Create your 
+workspace in Che and choose `Java` or `Python` or `php` as your programming language, depending on the language that you want to develop you robot application in:
 
 * *NAME*: `<GUID>-robot-app-workspace` 
 * *SELECT STACK*: `Java Cloud-Native` / `Python` / `php`
 * Click `*CREATE*`
 * After creation has finished a pop-up appears, click *OPEN*.
 
-Now your CodeReady workspace is running as a new Pod in OpenShift should open in your browser. 
+Now your Che workspace is running as a new Pod in OpenShift should open in your browser. 
 
 TIP: Creating a new workspace can take some time.
 
 ==== Setup Your Application Template 
 
-Depending on your programming language choice when preparing Eclipse Che (Java, Python or PHP) refer to the respective guide to set up an example application and for some introduction to it.
+Depending on your programming language choice, please refer to one of the following respective guides on how to set up your application and get started.
 
 ===== https://adoc.redhat.partners/lab/build-github.php?guid=<GUID>&file=robot-java-module.adoc&dir=/nexus-Six/openshift-robot-hackathon/master/doc/[Go on with Java^]
 
@@ -124,12 +127,12 @@ Depending on your programming language choice when preparing Eclipse Che (Java, 
 
 Okay, by now you should have:
 
-* set up a complete Cloud Native Development Environment in the programming language of your choice.  
+* set up a complete Cloud Native Development Environment in the programming language of your choice  
 * gone through some training missions to get you up to speed
 
 You have all the information to get started hacking the robot!
 
-=== Mission
+=== Final Mission
 
 As explained your mission will be to navigate your robot through an unkown labyrinth with a combination of driving and distance checks. So prepare and test your robot with different maze variations.
 
