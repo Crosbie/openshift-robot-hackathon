@@ -47,7 +47,7 @@ curl commandline under *Run your requests* from a terminal. This will test the
 connection to the Hub-Controller, *not* the robot!
 
 ----
-curl https://api-2445582274375.staging.gw.apicast.io:443/api/robot/status?user_key=<GUID>
+curl https://api-2445582274375.production.gw.apicast.io:443/api/robot/status?user_key=<GUID>
 OK
 ----
 
@@ -75,7 +75,7 @@ platform.
 
 Your team user has already been created for you, your user name is `*<GUID>*`. Click on the link below and access the OpenShift web UI:
 
-https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-618f.openshiftworkshop.com/console^]
+https://master.43d7.events.opentlc.com/console/project/lab-infra/overview[https://master.43d7.events.opentlc.com/console/project/lab-infra/overview^]
 
 * Login as your team user, `*<GUID>*`, the password will be provided. 
 * Look around
@@ -92,7 +92,7 @@ a browser-based, cloud-native IDE running in the OpenShift environment.
 
 Access Che in your browser:
 
-http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
+http://che-lab-infra.apps.43d7.events.opentlc.com/[http://che-lab-infra.apps.43d7.events.opentlc.com/^]
 
 
 Login with `*<GUID>*` as username and the provided password.
@@ -144,13 +144,13 @@ Good Luck and Robotz Go, Go, Go!
 https://rh-test.3scale.net/[https://rh-test.3scale.net/^]
 
 OpenShift Web UI: +
-https://master.berlin-618f.openshiftworkshop.com/console[https://master.berlin-618f.openshiftworkshop.com/console^]
+https://master.43d7.events.opentlc.com/console/project/lab-infra/overview[https://master.43d7.events.opentlc.com/console/project/lab-infra/overview^]
 
 Che Web UI: +
-http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com/^]
+http://che-lab-infra.apps.43d7.events.opentlc.com/[http://che-lab-infra.apps.43d7.events.opentlc.com/^]
 
 Gogs Web UI: +
-http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
+http://gogs-lab-infra.apps.43d7.events.opentlc.com[http://gogs-lab-infra.apps.43d7.events.opentlc.com^]
 
 
 

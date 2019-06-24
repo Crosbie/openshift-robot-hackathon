@@ -8,7 +8,7 @@ GitHub repository. You may mirror this template project into your team's Git (Go
 
 To mirror the template project into Gogs:
 
-* Go to the Gogs url in you browser: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
+* Go back to the Gogs url in you browser: http://gogs-lab-infra.apps.43d7.events.opentlc.com[Gogs^]
 * Click *Sign In* in the top right corner 
 * Log in (if required)
 ** Username : <GUID>
@@ -25,7 +25,7 @@ Now you have the application template in your team's git repository and can get 
 
 To clone you repository into Che : 
 
-* Go back to Che : http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com[http://che-lab-infra.apps.berlin-618f.openshiftworkshop.com^]
+* Go back to Che : hhttp://che-lab-infra.apps.43d7.events.opentlc.com[Che^]
 * Log in (if required) 
 ** Username : <GUID>
 ** Password : <The standard password provided>
@@ -35,7 +35,7 @@ To clone you repository into Che :
 ** You can also find this option in the top menu *Workspace > Import Project*
 * In the *Import project* window:
 ** Choose *GIT*
-** *URL of your Git repo*: http://gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-app.git
+** *URL of your Git repo*: http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-app.git
 ** *Name*: 
 * In the next dialog choose *Java -> Maven*
 * Click *Save*
@@ -130,7 +130,7 @@ route to externally access the application will be visible in the upper right
 corner. It will look like:
 
 ----
-http://hub-controller-live-<GUID>-project.apps.berlin-618f.openshiftworkshop.com 
+http://hub-controller-live-<GUID>-project.apps.43d7.events.opentlc.com 
 ----
 
 Clicking the route will take you to your applications web page again! But this 
