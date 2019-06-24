@@ -145,7 +145,7 @@ def run():
     response = requests.post(application.config['URI'] + '/forward/10', data=data, verify=False)
     response = requests.post(application.config['URI'] + '/right/90', data=data, verify=False)
     response = requests.post(application.config['URI'] + '/forward/10', data=data, verify=False)
-    return render_template('result.html', message=str(response.text))
+    return response.text
 ----
 
 +++ </div></details> +++
@@ -170,7 +170,7 @@ def run():
         print (str(response.text))
         requests.post(application.config['URI'] + '/forward/5', data=data, verify=False)
         response = requests.get(application.config['URI'] + '/distance' + '?user_key=' + application.config['APITOKEN'], verify=False)
-    return render_template('result.html', message=str("Wall coming up!"))
+    return 'Wall coming up!'
 ----
 
 +++ </div></details> +++
