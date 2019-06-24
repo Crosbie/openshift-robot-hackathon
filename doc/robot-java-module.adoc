@@ -4,9 +4,9 @@ Welcome to the Java module. You choose wisely as Java is still one of the most p
 
 Robot Services Ltd has provided a basic Spring Boot-based Java application template to 
 quickly get you started with your first robot application. It's provided in a 
-GitHub repository. You may mirror this template project into your team's Git (Gogs) repository running in OpenShift and start to developing in it.
+GitHub repository. You will migrate this template project into your team's Git (Gogs) repository running in OpenShift and start to developing in it.
 
-To mirror the template project into Gogs:
+To migrate the template project into Gogs:
 
 * Go back to the Gogs url in you browser: http://gogs-lab-infra.apps.43d7.events.opentlc.com[Gogs^]
 * Click *Sign In* in the top right corner 
@@ -25,7 +25,7 @@ Now you have the application template in your team's git repository and can get 
 
 To clone you repository into Che : 
 
-* Go back to Che : hhttp://che-lab-infra.apps.43d7.events.opentlc.com[Che^]
+* Go back to Che : http://che-lab-infra.apps.43d7.events.opentlc.com[Che^]
 * Log in (if required) 
 ** Username : <GUID>
 ** Password : <The standard password provided>

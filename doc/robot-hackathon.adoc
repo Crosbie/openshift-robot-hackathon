@@ -23,7 +23,7 @@ restrict and limit who can use the API. The API management platform takes care
 of role-based access control, setting up accounts, monitoring, routing, traffic 
 shaping and more.
 
-WARNING: Please accesss all the follwing URLs as a team on one laptop (not individually), as you are now a DevOps 
+WARNING: Please access all the follwing URLs as a team on one laptop (not individually), as you are now a DevOps 
 team and want to be on the same page. Also the cloud system is sized for one account per team performance wise. 
 
 Okay, let's get started. Head over to `https://rh-test.3scale.net/[https://rh-test.3scale.net/^]` and:
@@ -43,21 +43,19 @@ requests to the proper robot. Your *Key* is: `*<GUID>*`
 ==== Testing the API
 
 The easiest way to test the connection to the Hub-Controller is to use the 
-curl commandline under *Run your requests* from a terminal. This will test the 
-connection to the Hub-Controller, *not* the robot!
+curl commandline example found under the section *Run your requests*. Try this command in you terminal. This will test the connection to the Hub-Controller, *not* the robot!
 
 ----
 curl https://api-2445582274375.production.gw.apicast.io:443/api/robot/status?user_key=<GUID>
 OK
 ----
 
-If you don't have a laptop with the `curl`-command don't worry, you can test this also through the 3Scale webinterface.
+If you don't have a laptop with the `curl`-command don't worry, you can test this also through the 3Scale webinterface in the next section.
 
 ==== Exploring the Robot API
 
 There are a number of ways to test the connectivity from your PC via 3Scale to 
-the robot (there are a couple of hops involved, check back with the 
-infrastructure diagram if in doubt). You basically need to construct an URL to query the API using 
+the robot. You basically need to construct an URL to query the API using 
 the 3Scale access token.
 
 While in the 3Scale web UI access the *DOCUMENTATION* link in the menu bar. 
@@ -65,7 +63,9 @@ Here you will find the REST API documentation of all robot operation currently
 exposed in OpenAPI/Swagger format.
 
 You can test the available API calls from here. These will actually go to your 
-robot. Just remember to fill in `*<GUID>*` as `USER_KEY` when you test.  
+robot. Just remember to fill in `*<GUID>*` as `USER_KEY` when you test.
+
+TIP: Why don't you let the little guy drive around for a few cm?
 
 === Accessing OpenShift
 
@@ -77,9 +77,12 @@ Your team user has already been created for you, your user name is `*<GUID>*`. C
 
 https://master.43d7.events.opentlc.com/console/project/lab-infra/overview[https://master.43d7.events.opentlc.com/console/project/lab-infra/overview^]
 
-* Login as your team user, `*<GUID>*`, the password will be provided. 
-* Look around
-* You will see an error: `An error occurred getting metrics.` This is ok, because we haven't installed Metrics. Please click on `*Don't Show Me Again*`.
+* Login as your team user, `*<GUID>*`, the password will be provided
+* Accept the self-signed certificate in you browser 
+* Look around the OpenShift Console
+* You will see an error: `An error occurred getting metrics.` 
+* Click on *Open metrics URL* and trust this certificate as well
+* Then reload you Browser to see the metrics
 
 === Your first application
 
@@ -97,21 +100,21 @@ http://che-lab-infra.apps.43d7.events.opentlc.com/[http://che-lab-infra.apps.43d
 
 Login with `*<GUID>*` as username and the provided password.
 
-Che provides development environment for several languages and runtimes. You have the choice between Python, php and Java.
+Che provides development environment for several languages and runtimes. You have the choice between Java, Python and PHP.
 
 ==== Launch your workspace from Che
 
 After login you are in the Workspace management view of Che. Create your 
-workspace in Che and choose `Java` or `Python` or `php` as your programming language, depending on the language that you want to develop you robot application in:
+workspace in Che and choose `Java`, `Python` or `php` as your programming language, depending on the language that you want to develop you robot application in:
 
 * *NAME*: `<GUID>-robot-app-workspace` 
 * *SELECT STACK*: `Java Cloud-Native` / `Python` / `php`
 * Click `*CREATE*`
-* After creation has finished a pop-up appears, click *OPEN*.
+* After creation has finished a pop-up appears, click *OPEN In IDE*.
 
-Now your Che workspace is running as a new Pod in OpenShift should open in your browser. 
+Now your Che workspace is running as a new Pod in OpenShift and should open in your browser. 
 
-TIP: Creating a new workspace can take some time.
+WARNING: Remember to only create one workspace per team. Creating a new workspace can take some time.
 
 ==== Setup Your Application Template 
 

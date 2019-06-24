@@ -2,12 +2,12 @@
 
 == Welcome Python Developers!
 
-Good choice of programming language Team <GUID>! With the help of Python you will control your robot in no time!
+Good choice of programming language team <GUID>! With the help of Python you will control your robot in no time!
 
 Robot Services Ltd has provided a basic Python application to 
-quickly get you started with your first robot application.
+quickly get you started with your first robot application. It’s provided in a GitHub repository. You may mirror this template project into your team’s Git (Gogs) repository running in OpenShift and start to developing in it.
 
-== Clone the Python Example into your Gogs Git Repo
+== Migrate the Python Example into your Gogs Git Repo
 
 . Login into http://gogs-lab-infra.apps.43d7.events.opentlc.com[Gogs^] with `*<GUID>*` and the provided password.
 . Click on the `*+*` in the upper right and choose `*New Migration*`.
@@ -18,9 +18,9 @@ quickly get you started with your first robot application.
 
 == Configure and Run
 
-In this Hackathon you'll use Eclipse Che for development (you can of course use any dev tool you want as long as you can connect to your Git repo in Gogs, but Che is fun). To get started you have to:
+In this Hackathon you'll use Eclipse Che for development. To get started you have to do the following general steps as explained in the following sections:
 
-* Create a new Che Workspace for your programming language of choice, you should have done this already. 
+* Make sure you have a Che Workspace for your programming language of choice, you should have done this already. 
 * Clone your Gogs repository into a Che project
 * Do some basic configuration 
 * Start the application for the first time
@@ -33,9 +33,9 @@ To start a new project with your sources from Gogs:
 
 * Click `*Import Project*`, choose `GIT` as Version Control System.
 * Paste your GIT Project URL from Gogs. Get it by copying the HTTP URL from your Gogs account, it should look like `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-python.git`*
-* Edit the link and add your username and passwort to it for push authentication. It should now look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.berlin-618f.openshiftworkshop.com/<GUID>/<GUID>-python*`
+* Edit the link and add your username and passwort to it for push authentication. It should now look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-python*`
 * Click on `*Import*`
-* In the project configuration window that comes up next choose `*Python*`
+* In the project configuration window that comes up next leave or set to `*Blank*`
 * Click `*Save*`.
 
 In addition you have to edit the GIT user profile in Che: 
@@ -51,10 +51,24 @@ Now is a good time to have a first look at the Python template application. It's
 
 Because the application you cloned is a template to make it work with your robot you have to configure the connection details first:
 
-* Expand the project tree and open the *config.py* file by double-clicking it
+* Expand the project tree on the left and open the *config.py* file by double-clicking it
 * Change the *URI* and *APITOKEN* parameters
-** You could look up the URI in your 3Scale account, it should be *https://api-2445582274375.production.gw.apicast.io/api/robot/*.
+** You could look up the URI in your 3Scale account, it should be *https://api-2445582274375.production.gw.apicast.io/api/robot*.
 ** For *APITOKEN* fill in your team name to route your requests to the proper robot
+
+Now commit these code changes to Gogs:
+
+In Che click on Git→Commit
+
+Type in a Commit message
+
+Make sure to check the *Push committed changes to* checkbox
+
+Click on Commit.
+
+After the code changes have been pushed to Git/Gogs you can build a new version of your app in OpenShift.
+
+TIP: If you want to see the changes that you have just pushed to Gogs you can have a look at your current repository in the Gogs Webui
 
 == First build in OpenShift.
 
@@ -65,13 +79,16 @@ Open the https://master.43d7.events.opentlc.com/console[OpenShift Web UI^]. If n
 . Click on the `*<GUID>-project*`
 . Click on *Browse Catalog* -> *Languages* -> *Python* and choose `*Phython*`.
 . Click on `*Next*`
-. As `Application Name` use `*<GUID>-phython*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-php*`
+. As Python version keep 3.6
+. As `Application Name` use `*<GUID>-phython*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-python*`
 . Click on `*Create*` and `*Close*`
 . Click on `*Overview*` and then on the little `*>*` beside the `Deployment Config`.
+. You can watch the build steps in the lower right console
+. The application is deployed an ready when you see a blue circle indicating the number of healthy pods with you app
 
 === Check Robot
 
-After the build is complete, click the Link to your newly created application. It'll take you to the Python Robot Control Landing Page. From here you can execute a simple connectivity test of your robot by clicking *Status*.
+After the build is complete, click the Link to your newly created application in the top right. It'll take you to the Python Robot Control Landing Page. From here you can execute a simple connectivity test of your robot by clicking *Status*.
 
 === Run Robot!
 
@@ -81,18 +98,14 @@ If the robot moved, your setup is good and ready to go for the Hackathon!
 
 == Start Hacking
 
-The easiest way to add code to control the robot is to open the file *wsgi.py* and then edit the *run* method. To get started just comment out 
+To get started with programming open the file *wsgi.py* and then edit the *run* method.
 
-and remove the comments from
+Currently our robot is driving 5 cm forward. We want to let is drive 10 cm, so go ahead and find the parameter where the distance is set and change it accordingly. Commit and push the code as above.  
 
-to commit the code changes to Git:
+After the code changes have been pushed to Git/Gogs you can build a new version of your app in OpenShift:
 
-* In Che click on `*Git->Commit*`
-* Type in a Commit message
-* Check the `*Push commited changes*` checkbox
-* Click on `*Commit*`.
-
-After the code changes have been pushed to Git/Gogs you can build a new version of your app in OpenShift.
+. In the OpenShift Console in the *Overview* of your project click the three point menu above the blue circle
+. Choose *Start build* 
 
 == Training Missions
 
@@ -100,10 +113,10 @@ Here are some training missions to get you started.
 
 *Hints:*
 
-* Plan what your robot should do, check the space for the square.
+* Plan what your robot should do, check the space for the square
 * Look up the robot API calls you might need in 3Scale
 * Add code in the *run* method and commit/push it with Eclipse Che
-* Deploy to OpenShift
+* Start the Build in OpenShift
 * Test your code by running it from the robot control page
 
 As everything happens in HTTP requests, if you manage to get your program into an endless loop or so, the easiest way to terminate your application might be to scale the Pod down in the OpenShift console. An even better idea is to limit loop runs.
