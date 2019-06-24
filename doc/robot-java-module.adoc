@@ -170,6 +170,7 @@ examples for REST POST and Get Requests)
 
 +++ <details><summary> +++
 *>> _Click here for the solution_ <<*
++++ </summary><div> +++
 
 ----
  MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<String, 
@@ -204,6 +205,7 @@ Setup a barrrier/wall and program your robot so it moves to the wall but stops i
 
 +++ <details><summary> +++
 *>> _Click here for the solution_ <<*
++++ </summary><div> +++
 
 
 This is again not programmed in a particularly smart way, it's just an intro. Feel free to enhance!
