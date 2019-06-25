@@ -36,7 +36,7 @@ Let's have a first build in OpenShift.
 Open the https://master.43d7.events.opentlc.com/console[OpenShift Web UI^]. If not already logged in, log in with `*<GUID>*` and the provided password.
 
 . Click on the `*<GUID>-project*`
-. Click on `*Browse Project*`, `*Languages*`, `*PHP*`, `*PHP*` again.
+. Click on `*Browse Catalog*`, `*Languages*`, `*PHP*`, `*PHP*` again.
 . Click on `*Next*`
 . As `Application Name` use `*<GUID>-php*` and as `GIT Repository` use `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-php*`
 . Click on `*Create*` and `*Close*`
