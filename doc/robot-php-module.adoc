@@ -21,9 +21,9 @@ Click on `*Commit changes*`.
 
 In http://che-lab-infra.apps.43d7.events.opentlc.com/[Eclipse Che^] open your `Workspace` click on `*Import Project*`, choose `GIT` as Version Control System.
 
-In the `*URL*` field paste your GIT Project from Gogs. It should be: `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/bender/<GUID>-php*`.
+In the `*URL*` field paste your GIT Project from Gogs. It should be: `*http://gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-php*`.
 
-Edit the link and add your username and passwort to it. It should look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.43d7.events.opentlc.com/bender/<GUID>-php*`
+Edit the link and add your username and passwort to it. It should look like this: `*http://<GUID>:<PASSWORD>@gogs-lab-infra.apps.43d7.events.opentlc.com/<GUID>/<GUID>-php*`
 
 Don't forget to use the password which was provided to you.
 
